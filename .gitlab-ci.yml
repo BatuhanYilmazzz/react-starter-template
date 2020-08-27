@@ -1,0 +1,28 @@
+image: docker:latest
+
+before_script:
+  - echo "Before script section"
+  - docker info
+
+Build:
+  stage: build
+  script:
+    - echo "Building docker image"
+    - docker-compose build --no-cache
+  only:
+    - master
+  tags:
+    - batuhan.com.tr
+
+Deploy:
+  stage: deploy
+  script:
+    - echo "Deploying docker image"
+    - docker-compose up -d
+  after_script:
+    - echo "After script section"
+    - docker system prune -f
+  only:
+    - master
+  tags:
+    - batuhan.com.tr

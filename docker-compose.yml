@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  batuhan.com.tr:
+    container_name: batuhan.com.tr
+    image: batuhan.com.tr
+    build:
+      context: .
+    ports:
+      - 81:80
+    expose:
+      - 81
+    networks:
+      - internal
+
+networks:
+  internal:
+    driver: bridge
